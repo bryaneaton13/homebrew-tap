@@ -11,7 +11,6 @@ class Runbar < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on xcode: ["16.0", :build]
   depends_on "gh"
   depends_on macos: :sonoma
 
