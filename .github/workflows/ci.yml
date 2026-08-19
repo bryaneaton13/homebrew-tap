@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  formula:
+    name: Audit and build runbar
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: brew audit --strict --online Formula/runbar.rb
+      - name: Install from source
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: brew install --build-from-source Formula/runbar.rb
+      - name: Test
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: brew test runbar
