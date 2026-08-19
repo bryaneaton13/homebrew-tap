@@ -12,7 +12,7 @@ brew install bryaneaton13/tap/runbar
 | --- | --- |
 | [`runbar`](Formula/runbar.rb) | GitHub Actions menu bar app. Compiles from [gh-actions-runbar](https://github.com/bryaneaton13/gh-actions-runbar). |
 
-`runbar` depends on `gh`. Sign in with `gh auth login` after install.
+`runbar` needs macOS 14+ and Swift 6 (Xcode or Command Line Tools). It depends on `gh`. Sign in with `gh auth login` after install.
 
 Launch at login wants the app under Applications:
 
@@ -26,8 +26,9 @@ Do not bottle unsigned macOS apps. A later cask would need Developer ID notariza
 ## Add a formula
 
 1. Put a Ruby file in `Formula/`.
-2. `brew audit --strict --online Formula/<name>.rb`
-3. `brew install --build-from-source Formula/<name>.rb`
-4. Commit and push `main`.
+2. `brew tap bryaneaton13/tap /path/to/this/repo` if this checkout is not already tapped.
+3. `brew audit --strict --online bryaneaton13/tap/<name>`
+4. `brew install --build-from-source bryaneaton13/tap/<name>`
+5. Commit and push `main`.
 
 `brew install bryaneaton13/tap/<name>` picks this repo up as `homebrew-tap`.

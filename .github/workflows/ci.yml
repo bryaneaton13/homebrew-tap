@@ -11,14 +11,20 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Tap this checkout
+        run: |
+          TAP="$(brew --repo bryaneaton13/tap)"
+          mkdir -p "$(dirname "$TAP")"
+          rm -rf "$TAP"
+          ln -s "$GITHUB_WORKSPACE" "$TAP"
       - name: Audit
         env:
           HOMEBREW_NO_AUTO_UPDATE: 1
-        run: brew audit --strict --online Formula/runbar.rb
+        run: brew audit --strict --online bryaneaton13/tap/runbar
       - name: Install from source
         env:
           HOMEBREW_NO_AUTO_UPDATE: 1
-        run: brew install --build-from-source Formula/runbar.rb
+        run: brew install --build-from-source bryaneaton13/tap/runbar
       - name: Test
         env:
           HOMEBREW_NO_AUTO_UPDATE: 1
