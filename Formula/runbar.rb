@@ -30,16 +30,22 @@ class Runbar < Formula
     chmod "+x", bin/"runbar"
   end
 
+  def post_install
+    apps = Pathname("#{Dir.home}/Applications")
+    apps.mkpath
+    dest = apps/"RunBar.app"
+    if dest.exist? && !dest.symlink?
+      opoo "#{dest} already exists; leaving it in place."
+      return
+    end
+    dest.unlink if dest.symlink?
+    ln_sf opt_prefix/"RunBar.app", dest
+  end
+
   def caveats
     <<~EOS
-      RunBar.app is in the keg. Launch it with:
-        open #{opt_prefix}/RunBar.app
-      or:
-        runbar
-
-      Launch at login needs an Applications path:
-        mkdir -p ~/Applications
-        ln -sf #{opt_prefix}/RunBar.app ~/Applications/RunBar.app
+      RunBar.app is linked at ~/Applications/RunBar.app for Spotlight, Raycast,
+      and launch at login. Launch with `runbar` or open that app.
     EOS
   end
 
