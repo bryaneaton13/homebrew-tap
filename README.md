@@ -14,7 +14,7 @@ brew install bryaneaton13/tap/runbar
 
 `runbar` needs macOS 14+ and Swift 6 (Xcode or Command Line Tools). It depends on `gh`. Sign in with `gh auth login` after install.
 
-Install links `~/Applications/RunBar.app` so Spotlight, Raycast, and launch at login see the app.
+Homebrew cannot write `~/Applications` during install. `runbar` creates that link on first launch so Spotlight, Raycast, and launch at login see the app.
 
 Do not bottle unsigned macOS apps. A later cask would need Developer ID notarization.
 

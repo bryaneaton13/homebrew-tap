@@ -25,27 +25,21 @@ class Runbar < Formula
     prefix.install "dist/RunBar.app"
     (bin/"runbar").write <<~SH
       #!/bin/bash
-      exec /usr/bin/open "#{opt_prefix}/RunBar.app"
+      APP="#{opt_prefix}/RunBar.app"
+      LINK="${HOME}/Applications/RunBar.app"
+      mkdir -p "${HOME}/Applications"
+      if [[ -L "${LINK}" || ! -e "${LINK}" ]]; then
+        ln -sfn "${APP}" "${LINK}"
+      fi
+      exec /usr/bin/open "${APP}"
     SH
     chmod "+x", bin/"runbar"
   end
 
-  def post_install
-    apps = Pathname("#{Dir.home}/Applications")
-    apps.mkpath
-    dest = apps/"RunBar.app"
-    if dest.exist? && !dest.symlink?
-      opoo "#{dest} already exists; leaving it in place."
-      return
-    end
-    dest.unlink if dest.symlink?
-    ln_sf opt_prefix/"RunBar.app", dest
-  end
-
   def caveats
     <<~EOS
-      RunBar.app is linked at ~/Applications/RunBar.app for Spotlight, Raycast,
-      and launch at login. Launch with `runbar` or open that app.
+      Run `runbar` once. That opens the app and links ~/Applications/RunBar.app
+      so Spotlight, Raycast, and launch at login can see it.
     EOS
   end
 
