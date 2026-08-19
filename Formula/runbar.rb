@@ -15,6 +15,12 @@ class Runbar < Formula
   depends_on macos: :sonoma
 
   def install
+    # SwiftPM's sandbox-exec cannot nest inside Homebrew's build sandbox.
+    # v0.1.0 tarball lacks the flag; HEAD already has it.
+    inreplace "scripts/build-app.sh",
+              "swift build -c release",
+              "swift build --disable-sandbox -c release",
+              audit_result: false
     system "make", "app"
     prefix.install "dist/RunBar.app"
     (bin/"runbar").write <<~SH
