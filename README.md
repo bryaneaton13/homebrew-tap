@@ -6,6 +6,12 @@ Homebrew tap. Formulae compile on your Mac.
 brew install bryaneaton13/tap/runbar
 ```
 
+Upgrade:
+
+```bash
+brew upgrade bryaneaton13/tap/runbar
+```
+
 ## Formulae
 
 | Formula | What |

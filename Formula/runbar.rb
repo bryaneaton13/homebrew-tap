@@ -36,6 +36,8 @@ class Runbar < Formula
     <<~EOS
       Run `runbar` once. That opens the app and links ~/Applications/RunBar.app
       so Spotlight, Raycast, and launch at login can see it.
+
+      Upgrade with `brew upgrade bryaneaton13/tap/runbar`.
     EOS
   end
 
