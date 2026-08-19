@@ -1,8 +1,8 @@
 class Runbar < Formula
   desc "GitHub Actions in the macOS menu bar"
   homepage "https://bryaneaton13.github.io/gh-actions-runbar/"
-  url "https://github.com/bryaneaton13/gh-actions-runbar/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "14d70fab62213bae7b54286c081c7d863e780a48d15290c00155241621c14193"
+  url "https://github.com/bryaneaton13/gh-actions-runbar/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "4eecc1c4875d874f1f5c76a065b1d63dce5b321ce8d551f15707c624fd2a5665"
   license "MIT"
   head "https://github.com/bryaneaton13/gh-actions-runbar.git", branch: "main"
 
